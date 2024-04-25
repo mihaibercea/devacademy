@@ -44,6 +44,18 @@
     </form>
 
     <script>
+        //prefill with valid values
+        document.getElementById("title").value = "Clean Code";
+        document.getElementById("author").value = "Robert C. Martin";
+        document.getElementById("ISBN10").value = "9780132350884";
+        document.getElementById("ISBN13").value = "978-0132350884";
+        // document.getElementById("publishedDate").value = "01/08/2008";
+        document.getElementById("numberOfPages").value = 464;
+        document.getElementById("publisher").value = "Pearson";
+        document.getElementById("reviewScore").value = 4.38;
+
+
+
         function clickedOnSubmit(){
             console.log("Clicked on submit");
             if (document.getElementById("title").value == "" 
@@ -85,6 +97,23 @@
             if (document.getElementById("publishedDate").value == ""){
                 document.getElementById("publishedDateError").hidden = false;
                 document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date field<br/>";
+            }else{
+                //check the format, ex: 21/04/2024
+                let inputDate = document.getElementById("publishedDate").value;
+                let split = inputDate.split("/");
+                if (split.length != 3){
+                    document.getElementById("publishedDateError").hidden = false;
+                    document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date in the dd//MM/yyyy format<br/>";
+                }else{
+                    let day = split[0];
+                    let month = split[1];
+                    let year = split[2];
+                    if (day < 1 || day > 31 || month < 1 || month > 12 || year < 1900 || year > 2030){
+                        document.getElementById("publishedDateError").hidden = false;
+                        document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date in the dd//MM/yyyy format<br/>";
+                    }
+                }
+
             }
             if (document.getElementById("numberOfPages").value == ""){
                 document.getElementById("numberOfPagesError").hidden = false;
