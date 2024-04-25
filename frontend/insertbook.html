@@ -17,26 +17,45 @@
 
     <form action="" onsubmit="event.preventDefault();">
         <label for="title">Title</label><br>
+        <span id="titleError" style="color: red;" hidden></span>
         <input type="text" id="title" name="title" value=""><br>
         <label for="author">Author</label><br>
+        <span id="authorError" style="color: red;" hidden></span>
         <input type="text" id="author" name="author" value=""><br>
         <label for="ISBN10">ISBN10</label><br>
+        <span id="ISBN10Error" style="color: red;" hidden></span>
         <input type="text" id="ISBN10" name="ISBN10" value=""><br>
         <label for="ISBN13">ISBN13</label><br>
+        <span id="ISBN13Error" style="color: red;" hidden></span>
         <input type="text" id="ISBN13" name="ISBN13" value=""><br>
         <label for="publishedDate">Published Date</label><br>
+        <span id="publishedDateError" style="color: red;" hidden></span>
         <input type="text" id="publishedDate" name="publishedDate" value=""><br>
         <label for="numberOfPages">Number Of Pages</label><br>
+        <span id="numberOfPagesError" style="color: red;" hidden></span>
         <input type="text" id="numberOfPages" name="numberOfPages" value=""><br>
         <label for="publisher">Publisher</label><br>
+        <span id="publisherError" style="color: red;" hidden></span>
         <input type="text" id="publisher" name="publisher" value=""><br>
         <label for="reviewScore">Review score</label><br>
+        <span id="reviewScoreError" style="color: red;" hidden></span>
         <input type="text" id="reviewScore" name="reviewScore" value=""><br><br>
         <input type="submit" value="Submit" onclick="clickedOnSubmit()">
     </form>
 
     <script>
         function clickedOnSubmit(){
+            console.log("Clicked on submit");
+            if (document.getElementById("title").value == "" 
+            || document.getElementById("author").value == ""
+            || document.getElementById("ISBN10").value == ""
+            || document.getElementById("ISBN13").value == ""
+            || document.getElementById("publishedDate").value == ""
+            || document.getElementById("numberOfPages").value == ""
+            || document.getElementById("publisher").value == ""
+            || document.getElementById("reviewScore").value == ""){
+                alert("Please fill in the title field");
+            }
 
         }
     </script>
