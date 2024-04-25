@@ -46,7 +46,10 @@ let booksList = fetch('http://localhost:5077/api/book')
         let reviewScore = row.insertCell(7);
         reviewScore.innerHTML = booksList[i].reviewScore;
 
-        let deleteCell = row.insertCell(8);
+        let updateCell = row.insertCell(8);
+        updateCell.innerHTML = `<button onclick="window.location.href='updatebook.html?isbn10=${booksList[i].ISBN10}'">Update</button>`;
+
+        let deleteCell = row.insertCell(9);
         deleteCell.innerHTML = `<button onclick="deleteBook(${booksList[i].ISBN10})">Delete</button>`;
 
     }
