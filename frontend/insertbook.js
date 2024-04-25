@@ -13,76 +13,30 @@ console.log("Insert book page loaded");
 function clickedOnSubmit() {
     let valid = true;
     console.log("Clicked on submit");
-    if (document.getElementById("title").value == ""
-        || document.getElementById("author").value == ""
-        || document.getElementById("ISBN10").value == ""
-        || document.getElementById("ISBN13").value == ""
-        || document.getElementById("publishedDate").value == ""
-        || document.getElementById("numberOfPages").value == ""
-        || document.getElementById("publisher").value == ""
-        || document.getElementById("reviewScore").value == "") {
-        valid = false;
-    }
 
-    document.getElementById("titleError").hidden = true;
-    document.getElementById("authorError").hidden = true;
-    document.getElementById("ISBN10Error").hidden = true;
-    document.getElementById("ISBN13Error").hidden = true;
-    document.getElementById("publishedDateError").hidden = true;
-    document.getElementById("numberOfPagesError").hidden = true;
-    document.getElementById("publisherError").hidden = true;
-    document.getElementById("reviewScoreError").hidden = true;
+    let mandatoryFields = ["title", "author", "ISBN10", "ISBN13", "publishedDate", "numberOfPages", "publisher", "reviewScore"];
 
-    if (document.getElementById("title").value == "") {
-        document.getElementById("titleError").hidden = false;
-        document.getElementById("titleError").innerHTML = "Please fill in the title field<br/>";
-        valid = false;
-    }
+    mandatoryFields.forEach((field) => {
+        document.getElementById(`${field}Error`).hidden = true;
+        if (document.getElementById(field).value == "") {
+            document.getElementById(`${field}Error`).hidden = false;
+            document.getElementById(`${field}Error`).innerHTML = `Please fill in the ${field} field<br/>`;
+            valid = false;
+        }
+    });
 
-    if (document.getElementById("author").value == "") {
-        document.getElementById("authorError").hidden = false;
-        document.getElementById("authorError").innerHTML = "Please fill in the author field<br/>";
-        valid = false;
-    }
-    if (document.getElementById("ISBN10").value == "") {
-        document.getElementById("ISBN10Error").hidden = false;
-        document.getElementById("ISBN10Error").innerHTML = "Please fill in the ISBN10 field<br/>";
-        valid = false;
-    }
-    if (document.getElementById("ISBN13").value == "") {
-        document.getElementById("ISBN13Error").hidden = false;
-        document.getElementById("ISBN13Error").innerHTML = "Please fill in the ISBN13 field<br/>";
-        valid = false;
-    }
-    if (document.getElementById("publishedDate").value == "") {
-        document.getElementById("publishedDateError").hidden = false;
-        document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date field<br/>";
-        valid = false;
-    } else {
+
+    if (!document.getElementById("publishedDate").value == "") {
         //check the format, ex: 21/04/2024
         let inputDate = document.getElementById("publishedDate").value;
 
         valid = validateDate(inputDate) && valid;
     }
-    if (document.getElementById("numberOfPages").value == "") {
-        document.getElementById("numberOfPagesError").hidden = false;
-        document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field<br/>";
-    } else {
+    if (!document.getElementById("numberOfPages").value == "") {
         let numberofPages = document.getElementById("numberOfPages").value;
         valid = validateNumberOfPages(numberofPages) && valid;
 
     }
-    if (document.getElementById("publisher").value == "") {
-        document.getElementById("publisherError").hidden = false;
-        document.getElementById("publisherError").innerHTML = "Please fill in the publisher field<br/>";
-        valid = false;
-    }
-    if (document.getElementById("reviewScore").value == "") {
-        document.getElementById("reviewScoreError").hidden = false;
-        document.getElementById("reviewScoreError").innerHTML = "Please fill in the reviewScore field<br/>";
-        valid = false;
-    }
-
 
     if (!valid) {
         return;
