@@ -54,9 +54,50 @@
             || document.getElementById("numberOfPages").value == ""
             || document.getElementById("publisher").value == ""
             || document.getElementById("reviewScore").value == ""){
-                alert("Please fill in the title field");
             }
 
+            document.getElementById("titleError").hidden = true;
+            document.getElementById("authorError").hidden = true;
+            document.getElementById("ISBN10Error").hidden = true;
+            document.getElementById("ISBN13Error").hidden = true;
+            document.getElementById("publishedDateError").hidden = true;
+            document.getElementById("numberOfPagesError").hidden = true;
+            document.getElementById("publisherError").hidden = true;
+            document.getElementById("reviewScoreError").hidden = true;
+
+            if (document.getElementById("title").value == ""){
+                document.getElementById("titleError").hidden = false;
+                document.getElementById("titleError").innerHTML = "Please fill in the title field<br/>";
+            }
+            
+            if (document.getElementById("author").value == ""){
+                document.getElementById("authorError").hidden = false;
+                document.getElementById("authorError").innerHTML = "Please fill in the author field<br/>";
+            }
+            if (document.getElementById("ISBN10").value == ""){
+                document.getElementById("ISBN10Error").hidden = false;
+                document.getElementById("ISBN10Error").innerHTML = "Please fill in the ISBN10 field<br/>";
+            }
+            if (document.getElementById("ISBN13").value == ""){
+                document.getElementById("ISBN13Error").hidden = false;
+                document.getElementById("ISBN13Error").innerHTML = "Please fill in the ISBN13 field<br/>";
+            }
+            if (document.getElementById("publishedDate").value == ""){
+                document.getElementById("publishedDateError").hidden = false;
+                document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date field<br/>";
+            }
+            if (document.getElementById("numberOfPages").value == ""){
+                document.getElementById("numberOfPagesError").hidden = false;
+                document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field<br/>";
+            }
+            if (document.getElementById("publisher").value == ""){
+                document.getElementById("publisherError").hidden = false;
+                document.getElementById("publisherError").innerHTML = "Please fill in the publisher field<br/>";
+            }
+            if (document.getElementById("reviewScore").value == ""){
+                document.getElementById("reviewScoreError").hidden = false;
+                document.getElementById("reviewScoreError").innerHTML = "Please fill in the reviewScore field<br/>";
+            }
         }
     </script>
 
