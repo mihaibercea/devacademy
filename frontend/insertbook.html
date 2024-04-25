@@ -49,8 +49,8 @@
         document.getElementById("author").value = "Robert C. Martin";
         document.getElementById("ISBN10").value = "9780132350884";
         document.getElementById("ISBN13").value = "978-0132350884";
-        // document.getElementById("publishedDate").value = "01/08/2008";
-        document.getElementById("numberOfPages").value = 464;
+        document.getElementById("publishedDate").value = "01/08/2008";
+        // document.getElementById("numberOfPages").value = 464;
         document.getElementById("publisher").value = "Pearson";
         document.getElementById("reviewScore").value = 4.38;
 
@@ -100,6 +100,27 @@
             }else{
                 //check the format, ex: 21/04/2024
                 let inputDate = document.getElementById("publishedDate").value;
+                validateDate(inputDate);
+            }
+            if (document.getElementById("numberOfPages").value == ""){
+                document.getElementById("numberOfPagesError").hidden = false;
+                document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field<br/>";
+            }else{
+                let numberofPages = document.getElementById("numberOfPages").value;
+                validateNumberOfPages(numberofPages);
+
+            }
+            if (document.getElementById("publisher").value == ""){
+                document.getElementById("publisherError").hidden = false;
+                document.getElementById("publisherError").innerHTML = "Please fill in the publisher field<br/>";
+            }
+            if (document.getElementById("reviewScore").value == ""){
+                document.getElementById("reviewScoreError").hidden = false;
+                document.getElementById("reviewScoreError").innerHTML = "Please fill in the reviewScore field<br/>";
+            }
+        }
+
+        function validateDate(inputDate){
                 let split = inputDate.split("/");
                 if (split.length != 3){
                     document.getElementById("publishedDateError").hidden = false;
@@ -113,20 +134,18 @@
                         document.getElementById("publishedDateError").innerHTML = "Please fill in the Published Date in the dd//MM/yyyy format<br/>";
                     }
                 }
+        }
 
-            }
-            if (document.getElementById("numberOfPages").value == ""){
-                document.getElementById("numberOfPagesError").hidden = false;
-                document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field<br/>";
-            }
-            if (document.getElementById("publisher").value == ""){
-                document.getElementById("publisherError").hidden = false;
-                document.getElementById("publisherError").innerHTML = "Please fill in the publisher field<br/>";
-            }
-            if (document.getElementById("reviewScore").value == ""){
-                document.getElementById("reviewScoreError").hidden = false;
-                document.getElementById("reviewScoreError").innerHTML = "Please fill in the reviewScore field<br/>";
-            }
+        function validateNumberOfPages(numberOfPages){
+            if (isNaN(numberofPages)){
+                    document.getElementById("numberOfPagesError").hidden = false;
+                    document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field with a number<br/>";
+                }else{
+                    if (numberofPages < 1){
+                        document.getElementById("numberOfPagesError").hidden = false;
+                        document.getElementById("numberOfPagesError").innerHTML = "Please fill in the Number Of Pages field with a number greater than 0<br/>";
+                    }
+                }
         }
     </script>
 
