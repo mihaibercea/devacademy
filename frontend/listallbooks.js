@@ -46,6 +46,28 @@ let booksList = fetch('http://localhost:5077/api/book')
         let reviewScore = row.insertCell(7);
         reviewScore.innerHTML = booksList[i].reviewScore;
 
+        let deleteCell = row.insertCell(8);
+        deleteCell.innerHTML = `<button onclick="deleteBook(${booksList[i].ISBN10})">Delete</button>`;
+
     }
 
 });
+
+function deleteBook(isbn10){
+    fetch(`http://localhost:5077/api/book/${isbn10}`, {
+        method: 'DELETE'
+    })
+    .then(response =>
+    {
+        if (response.ok){
+            alert("Book deleted successfully");
+            location.reload();
+        }else{
+            alert("There was an error deleting the book");
+        }
+    })
+    .then()
+    .catch(error => {
+        alert("There was an error deleting the book");
+    });
+}
