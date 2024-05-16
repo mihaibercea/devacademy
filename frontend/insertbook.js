@@ -53,7 +53,7 @@ function clickedOnSubmit() {
         "reviewScore": document.getElementById("reviewScore").value
     }
 
-    fetch('http://localhost:5000/api/book',
+    fetch('http://localhost:62509/api/book',
         {
             method: 'POST',
             headers: {
