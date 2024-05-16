@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccess.FileStorage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +10,11 @@ namespace BusinessLogic.Books
 {
     public class BooksService
     {
+        private FileStorageService fileStorageService = new FileStorageService();
+
         public Book InsertBook(Book book)
         {
-            if (System.IO.File.Exists("books.json") == false)
-            {
-                System.IO.File.Create("books.json").Close();
-                System.IO.File.WriteAllText("books.json", "[]");
-            }
-
-            var fileContent = System.IO.File.ReadAllText("books.json");
-            var books = JsonSerializer.Deserialize<List<Book>>(fileContent);
+            var books = fileStorageService.GetAllBooks();
 
             for (var i = 0; i < books.Count; i++)
             {
@@ -28,10 +24,21 @@ namespace BusinessLogic.Books
                 }
             }
 
-            books.Add(book);
+            //map book to filebook
+            var fileBook = new FileBook
+            {
+                Author = book.Author,
+                ISBN10 = book.ISBN10,
+                ISBN13 = book.ISBN13,
+                NumberOfPages = book.NumberOfPages,
+                PublishedDate = book.PublishedDate,
+                Publisher = book.Publisher,
+                ReviewScore = book.ReviewScore,
+                Title = book.Title
+            };
 
-            var booksString = JsonSerializer.Serialize(books);
-            System.IO.File.WriteAllText("books.json", booksString);
+            fileStorageService.SaveBook(fileBook);
+
 
             return book;
         }
