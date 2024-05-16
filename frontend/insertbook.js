@@ -1,12 +1,12 @@
 //prefill with valid values
-// document.getElementById("title").value = "Clean Code";
-// document.getElementById("author").value = "Robert C. Martin";
-// document.getElementById("ISBN10").value = "9780132350884";
-// document.getElementById("ISBN13").value = "978-0132350884";
-// document.getElementById("publishedDate").value = "01/08/2008";
-// document.getElementById("numberOfPages").value = 464;
-// document.getElementById("publisher").value = "Pearson";
-// document.getElementById("reviewScore").value = 4.38;
+document.getElementById("title").value = "Clean Code";
+document.getElementById("author").value = "Robert C. Martin";
+document.getElementById("ISBN10").value = "9780132350884";
+document.getElementById("ISBN13").value = "978-0132350884";
+document.getElementById("publishedDate").value = "01/08/2008";
+document.getElementById("numberOfPages").value = 464;
+document.getElementById("publisher").value = "Pearson";
+document.getElementById("reviewScore").value = 4.38;
 
 console.log("Insert book page loaded");
 
@@ -53,7 +53,7 @@ function clickedOnSubmit() {
         "reviewScore": document.getElementById("reviewScore").value
     }
 
-    fetch('http://localhost:5077/api/book',
+    fetch('http://localhost:5000/api/book',
         {
             method: 'POST',
             headers: {

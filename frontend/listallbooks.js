@@ -1,6 +1,6 @@
 console.log("List all books");
 
-let booksList = fetch('http://localhost:5077/api/book')
+let booksList = fetch('http://localhost:5000/api/book')
 .then(response => response.json())
 .then(data => {
     console.log(data);
