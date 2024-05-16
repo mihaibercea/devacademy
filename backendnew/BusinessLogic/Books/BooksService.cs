@@ -45,8 +45,15 @@ namespace BusinessLogic.Books
 
         public List<Book> GetBooks()
         {
-            var fileContent = System.IO.File.ReadAllText("books.json");
-            var books = JsonSerializer.Deserialize<List<Book>>(fileContent);
+            var fileBooks = fileStorageService.GetAllBooks();
+
+            //map filebook to book
+            var books = new List<Book>();
+            foreach (var fileBook in fileBooks)
+            {
+                var book = MapFileBookToBook(fileBook);
+                books.Add(book);
+            }
 
             return books;
         }
@@ -86,6 +93,23 @@ namespace BusinessLogic.Books
             var books = JsonSerializer.Deserialize<List<Book>>(fileContent);
 
             var book = books.FirstOrDefault(b => b.ISBN10 == isbn10);
+            return book;
+        }
+
+        private Book MapFileBookToBook(FileBook fileBook)
+        {
+            var book = new Book
+            {
+                Author = fileBook.Author,
+                ISBN10 = fileBook.ISBN10,
+                ISBN13 = fileBook.ISBN13,
+                NumberOfPages = fileBook.NumberOfPages,
+                PublishedDate = fileBook.PublishedDate,
+                Publisher = fileBook.Publisher,
+                ReviewScore = fileBook.ReviewScore,
+                Title = fileBook.Title
+            };
+
             return book;
         }
     }
