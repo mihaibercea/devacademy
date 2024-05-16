@@ -4,7 +4,7 @@ let queryString = window.location.search;
 let split = queryString.split("=");
 let isbn10 = split[1];
 
-let currentBook = fetch(`http://localhost:5077/api/book/${isbn10}`)
+let currentBook = fetch(`http://localhost:62509/api/book/${isbn10}`)
 .then(response => {
     return response.json()
 })
@@ -110,7 +110,7 @@ function clickedOnSubmit(){
         "reviewScore": document.getElementById("reviewScore").value
     }
 
-    fetch('http://localhost:5077/api/book',
+    fetch('http://localhost:62509/api/book',
     {
         method: 'PUT',
         headers: {
