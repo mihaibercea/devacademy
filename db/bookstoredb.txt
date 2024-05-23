@@ -1,0 +1,13 @@
+--version 2024-05-23.01
+
+CREATE TABLE Books (
+    BookId INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(255) NOT NULL,
+    Author NVARCHAR(255) NOT NULL,
+    ISBN10 NVARCHAR(30) NOT NULL,
+    ISBN13 NVARCHAR(30) NOT NULL,
+    PublishedDate DATE,
+    NumberOfPages INT,
+    Publisher NVARCHAR(255),
+    ReviewScore FLOAT
+);

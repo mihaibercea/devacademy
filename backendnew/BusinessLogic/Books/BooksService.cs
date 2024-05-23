@@ -1,3 +1,4 @@
+﻿using DataAccess.DBStorage;
 ﻿using DataAccess.FileStorage;
 using System;
 using System.Collections.Generic;
@@ -11,21 +12,22 @@ namespace BusinessLogic.Books
     public class BooksService
     {
         private FileStorageService fileStorageService = new FileStorageService();
+        private SqlStorageService sqlStorageService = new SqlStorageService();
 
         public Book InsertBook(Book book)
         {
-            var books = fileStorageService.GetAllBooks();
+            //var books = sqlStorageService.GetAllBooks();
 
-            for (var i = 0; i < books.Count; i++)
-            {
-                if (books[i].ISBN10 == book.ISBN10 || books[i].ISBN13 == book.ISBN13)
-                {
-                    return null;
-                }
-            }
+            //for (var i = 0; i < books.Count; i++)
+            //{
+            //    if (books[i].ISBN10 == book.ISBN10 || books[i].ISBN13 == book.ISBN13)
+            //    {
+            //        return null;
+            //    }
+            //}
 
             //map book to filebook
-            var fileBook = new FileBook
+            var sqlBook = new SqlBook
             {
                 Author = book.Author,
                 ISBN10 = book.ISBN10,
@@ -37,7 +39,7 @@ namespace BusinessLogic.Books
                 Title = book.Title
             };
 
-            fileStorageService.SaveBook(fileBook);
+            sqlStorageService.InsertBook(sqlBook);
 
 
             return book;

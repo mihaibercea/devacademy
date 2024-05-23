@@ -52,6 +52,9 @@ let booksList = fetch('http://localhost:62509/api/book')
         let deleteCell = row.insertCell(9);
         deleteCell.innerHTML = `<button onclick="deleteBook(${booksList[i].ISBN10})">Delete</button>`;
 
+        let detaildsCell = row.insertCell(10);
+        detaildsCell.innerHTML = `<button onclick="window.location.href='bookdetails.html?isbn10=${booksList[i].ISBN10}'">Details</button>`;
+
     }
 
 });

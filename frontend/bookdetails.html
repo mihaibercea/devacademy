@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <a href="index.html">Home</a>
+        <h1>
+            Book details
+        </h1>
+
+        
+            <!-- //Book:
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "ISBN10": "9780132350884",
+    "ISBN13": "978-0132350884",
+    "publishedDate": "01/08/2008",
+    "numberOfPages": 464,
+    "publisher": "Pearson",
+    "reviewScore": 4.38, -->
+
+    
+    <p>Title: <span id="title"></span></p>
+    <p>Author: <span id="author"></span></p>
+    <p>ISBN: <span id="ISBN10"></span></p>
+    <p>ISBN13: <span id="ISBN13"></span></p>
+    <p>Published Date: <span id="publishedDate"></span></p>
+    <p>No of pages: <span id="numberOfPages"></span></p>
+    <p>Publisher: <span id="publisher"></span></p>
+    <p>Review score: <span id="reviewScore"></span></p>
+
+    <h2>Add review</h2>
+    <form action="" onsubmit="event.preventDefault();">
+        <label for="inputReviewScore">Review score</label><br>
+        <input type="text" id="inputReviewScore" name="inputReviewScore" value=""><br>
+        <label for="inputReviewText">Review text</label><br>
+        <input type="text" id="inputReviewText" name="inputReviewText" value=""><br>
+
+        <input type="submit" value="Submit" onclick="clickedOnSubmit()">
+    </form>
+
+    <script src="bookdetails.js"></script>
+    </body>
+</html>
