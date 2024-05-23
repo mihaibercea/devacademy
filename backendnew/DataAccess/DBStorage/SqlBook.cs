@@ -9,6 +9,7 @@ namespace DataAccess.DBStorage
 {
     public class SqlBook
     {
+        public int BookId { get; set; }
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
@@ -31,7 +32,7 @@ namespace DataAccess.DBStorage
         public string Publisher { get; set; }
 
         [JsonPropertyName("reviewScore")]
-        public double ReviewScore { get; set; }
+        public float ReviewScore { get; set; }
 
 
         public override string ToString()

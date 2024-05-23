@@ -35,7 +35,7 @@ namespace BusinessLogic.Books
                 NumberOfPages = book.NumberOfPages,
                 PublishedDate = book.PublishedDate,
                 Publisher = book.Publisher,
-                ReviewScore = book.ReviewScore,
+                ReviewScore = (float)book.ReviewScore,
                 Title = book.Title
             };
 
@@ -47,13 +47,13 @@ namespace BusinessLogic.Books
 
         public List<Book> GetBooks()
         {
-            var fileBooks = fileStorageService.GetAllBooks();
+            var sqlBooks = sqlStorageService.GetAllBooks();
 
             //map filebook to book
             var books = new List<Book>();
-            foreach (var fileBook in fileBooks)
+            foreach (var sqlBook in sqlBooks)
             {
-                var book = MapFileBookToBook(fileBook);
+                var book = MapSqlBookToBook(sqlBook);
                 books.Add(book);
             }
 
@@ -110,6 +110,23 @@ namespace BusinessLogic.Books
                 Publisher = fileBook.Publisher,
                 ReviewScore = fileBook.ReviewScore,
                 Title = fileBook.Title
+            };
+
+            return book;
+        }
+
+        private Book MapSqlBookToBook(SqlBook sqlBook)
+        {
+            var book = new Book
+            {
+                Author = sqlBook.Author,
+                ISBN10 = sqlBook.ISBN10,
+                ISBN13 = sqlBook.ISBN13,
+                NumberOfPages = sqlBook.NumberOfPages,
+                PublishedDate = sqlBook.PublishedDate,
+                Publisher = sqlBook.Publisher,
+                ReviewScore = sqlBook.ReviewScore,
+                Title = sqlBook.Title
             };
 
             return book;
