@@ -1,4 +1,4 @@
---version 2024-05-23.01
+--version 2024-05-23.02
 
 CREATE TABLE Books (
     BookId INT IDENTITY(1,1) PRIMARY KEY,
@@ -10,4 +10,12 @@ CREATE TABLE Books (
     NumberOfPages INT,
     Publisher NVARCHAR(255),
     ReviewScore FLOAT
+);
+
+CREATE TABLE BookReviews (
+    ReviewId INT IDENTITY(1,1) PRIMARY KEY,
+    BookId INT NOT NULL,
+    ReviewScore FLOAT NOT NULL,
+    ReviewText NVARCHAR(MAX) NOT NULL,
+    FOREIGN KEY (BookId) REFERENCES Books(BookId)
 );

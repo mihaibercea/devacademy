@@ -140,7 +140,7 @@ namespace WebApp.Controllers
         {
             var bookReview = new BookReview
             {
-                ISBN10 = bookReviewDTO.ISBN10,
+                BookId = bookReviewDTO.BookId,
                 ReviewScore = float.Parse(bookReviewDTO.ReviewScore),
                 ReviewText = bookReviewDTO.ReviewText
             };

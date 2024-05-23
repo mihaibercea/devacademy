@@ -142,7 +142,14 @@ namespace BusinessLogic.Books
 
         public void AddBookReview(BookReview bookReview)
         {
-            Console.WriteLine();
+            //map to sqlBookReview
+            var newSqlBookReview = new SqlBookReview
+            {
+                BookId = int.Parse(bookReview.BookId),
+                ReviewScore = bookReview.ReviewScore,
+                ReviewText = bookReview.ReviewText,
+            };
+            sqlStorageService.AddBookReview(newSqlBookReview);
         }
     }
 }

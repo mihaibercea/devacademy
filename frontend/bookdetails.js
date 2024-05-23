@@ -23,7 +23,7 @@ let currentBook = fetch(`http://localhost:62509/api/book/${bookId}`)
 
 function clickedOnSubmit(){
     let bodyContent = {
-        "bookId": id,
+        "bookId": bookId,
         "reviewScore": document.getElementById("inputReviewScore").value,
         "reviewText": document.getElementById("inputReviewText").value
     }
@@ -38,10 +38,6 @@ function clickedOnSubmit(){
         })
         .then((response) => {
             console.log('Response: ', response);
-            return response.json();
-        })
-        .then((data) => {
-            console.log('Data: ', data);
             alert("Book review inserted successfully");
         })
         .catch((error) => {

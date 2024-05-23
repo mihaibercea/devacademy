@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic.Books
+namespace DataAccess.DBStorage
 {
-    public class BookReview
+    public class SqlBookReview
     {
-        public string BookId { get; set; }
+        public int BookId { get; set; }
         public float ReviewScore { get; set; }
         public string ReviewText { get; set; }
     }

@@ -99,5 +99,28 @@ namespace DataAccess.DBStorage
             }
 
         }
+
+        public void AddBookReview(SqlBookReview sqlBookReview)
+        {
+
+            //connect to sql database and get all books
+            using (var connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"INSERT INTO BookReviews " +
+                    $"(BookId, ReviewScore, ReviewText)" +
+                    $"\r\nVALUES ('{sqlBookReview.BookId}', '{sqlBookReview.ReviewScore}', '{sqlBookReview.ReviewText}');";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    var reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        var value = reader.GetString(0);
+                    }
+                }
+            }
+
+        }
     }
 }
