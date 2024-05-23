@@ -4,6 +4,7 @@ namespace WebApp.Controllers
 {
     public class BookDTO
     {
+        public int BookId { get; set; }
         [JsonPropertyName("title")]
         public string Title { get; set; }
 

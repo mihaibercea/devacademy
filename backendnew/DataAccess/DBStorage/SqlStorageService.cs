@@ -66,5 +66,38 @@ namespace DataAccess.DBStorage
 
             return books;
         }
+
+
+
+        public SqlBook GetBookById(string bookId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = $"SELECT * FROM Books WHERE BookId='{bookId}'";
+
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    var reader = command.ExecuteReader();
+                    var newBook = new SqlBook();
+                    while (reader.Read())
+                    {
+                        newBook.BookId = reader.GetInt32(0);
+                        newBook.Title = reader.GetString(1);
+                        newBook.Author = reader.GetString(2);
+                        newBook.ISBN10 = reader.GetString(3);
+                        newBook.ISBN13 = reader.GetString(4);
+                        newBook.PublishedDate = reader.GetDateTime(5).ToShortDateString();
+                        newBook.NumberOfPages = reader.GetInt32(6);
+                        newBook.Publisher = reader.GetString(7);
+                        newBook.ReviewScore = (float)reader.GetDouble(8);
+                    }
+                    return newBook;
+                }
+
+            }
+
+        }
     }
 }

@@ -89,6 +89,13 @@ namespace BusinessLogic.Books
 
         }
 
+        public Book GetBookById(string id)
+        {
+            var book = sqlStorageService.GetBookById(id);
+            return MapSqlBookToBook(book);
+            
+        }
+
         public Book GetBookByIsbn(string isbn10)
         {
             var fileContent = System.IO.File.ReadAllText("books.json");
@@ -119,6 +126,7 @@ namespace BusinessLogic.Books
         {
             var book = new Book
             {
+                BookId = sqlBook.BookId,
                 Author = sqlBook.Author,
                 ISBN10 = sqlBook.ISBN10,
                 ISBN13 = sqlBook.ISBN13,

@@ -1,9 +1,9 @@
 let queryString = window.location.search;
 let split = queryString.split("=");
-let isbn10 = split[1];
-console.log(isbn10);
+let bookId = split[1];
+console.log(bookId);
 
-let currentBook = fetch(`http://localhost:62509/api/book/${isbn10}`)
+let currentBook = fetch(`http://localhost:62509/api/book/${bookId}`)
 .then(response => {
     return response.json()
 })
@@ -23,7 +23,7 @@ let currentBook = fetch(`http://localhost:62509/api/book/${isbn10}`)
 
 function clickedOnSubmit(){
     let bodyContent = {
-        "ISBN10": isbn10,
+        "bookId": id,
         "reviewScore": document.getElementById("inputReviewScore").value,
         "reviewText": document.getElementById("inputReviewText").value
     }

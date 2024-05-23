@@ -45,6 +45,7 @@ namespace WebApp.Controllers
             {
                 var bookDTO = new BookDTO
                 {
+                    BookId = book.BookId,
                     ISBN13 = book.ISBN13,
                     ISBN10 = book.ISBN10,
                     Title = book.Title,
@@ -62,8 +63,19 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        [Route("{isbn10}")]
-        public BookDTO Get([FromRoute] string isbn10)
+        [Route("{bookId}")]
+        public BookDTO Get([FromRoute] string bookId)
+        {
+            var book = booksService.GetBookById(bookId);
+
+            BookDTO bookDTO = MapBookToBookDTO(book);
+
+            return bookDTO;
+        }
+
+        [HttpGet]
+        [Route("/isbn/{isbn10}")]
+        public BookDTO GetBookByIsbn([FromRoute] string isbn10)
         {
             var book = booksService.GetBookByIsbn(isbn10);
 
@@ -107,6 +119,7 @@ namespace WebApp.Controllers
         {
             return new BookDTO
             {
+                BookId = book.BookId,
                 ISBN13 = book.ISBN13,
                 ISBN10 = book.ISBN10,
                 Title = book.Title,

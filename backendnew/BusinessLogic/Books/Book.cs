@@ -9,6 +9,7 @@ namespace BusinessLogic.Books
 {
     public class Book
     {
+        public int BookId { get; set; }
         [JsonPropertyName("title")]
         public string Title { get; set; }
 
