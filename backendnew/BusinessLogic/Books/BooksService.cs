@@ -1,5 +1,5 @@
 ﻿using DataAccess.DBStorage;
-﻿using DataAccess.FileStorage;
+using DataAccess.FileStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -113,6 +113,11 @@ namespace BusinessLogic.Books
             };
 
             return book;
+        }
+
+        public void AddBookReview(BookReview bookReview)
+        {
+            Console.WriteLine();
         }
     }
 }

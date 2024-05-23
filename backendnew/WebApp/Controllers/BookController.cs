@@ -117,5 +117,21 @@ namespace WebApp.Controllers
                 ReviewScore = book.ReviewScore
             };
         }
+
+
+
+        [HttpPost]
+        [Consumes("application/json")]
+        [Route("review")]
+        public void PostReview([FromBody] BookReviewDTO bookReviewDTO)
+        {
+            var bookReview = new BookReview
+            {
+                ISBN10 = bookReviewDTO.ISBN10,
+                ReviewScore = float.Parse(bookReviewDTO.ReviewScore),
+                ReviewText = bookReviewDTO.ReviewText
+            };
+            booksService.AddBookReview(bookReview);
+        }
     }
 }
